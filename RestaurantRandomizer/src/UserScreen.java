@@ -21,6 +21,7 @@ public class UserScreen extends JFrame{
 		super(title);
 		thisWindow = this;
 		numRestaurants = 0;
+		restaurants = new Restaurant[15];
 		
 		JButton searchBar = new JButton("Title Search");
 		searchBar.addActionListener(new ActionListener() {
@@ -43,7 +44,16 @@ public class UserScreen extends JFrame{
 		addBar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event)
 			{
-				thisWindow.dispose();
+				String newRestName = JOptionPane.showInputDialog("What is the name of the restaurant you want to add?");
+				String newRestDesc = JOptionPane.showInputDialog("Please enter a brief description of the restaurant: ");
+				
+				if(newRestDesc == null) newRestDesc = "";
+				
+				if(newRestName != null || !newRestName.equals(""))
+				{
+					restaurants[numRestaurants] = new Restaurant(newRestName, newRestDesc);
+					numRestaurants++;
+				}
 			}
 		});
 		
