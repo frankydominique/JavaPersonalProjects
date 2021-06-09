@@ -17,17 +17,20 @@ public class BasicRandomizer {
 		
 		String[] restaurants = new String[numRestaurants];
 		int index = 0;
+		int numRest2 = numRestaurants;
 		
-		while (numRestaurants > 0)
+		while (numRest2 > 0)
 		{
 			System.out.println("Please enter a restaurant name: ");
 			String restaurantName = input.nextLine();
 			
 			restaurants[index] = restaurantName;
 			index++;
-			numRestaurants--;
+			numRest2--;
 		}
 		
-		System.out.println("Today's choice is: " + restaurants[(int)Math.random() * numRestaurants]);
+		Double rIndex = new Double(Math.random() * numRestaurants);
+		
+		System.out.println("Today's choice is: " + restaurants[rIndex.intValue()]);
 	}
 }
