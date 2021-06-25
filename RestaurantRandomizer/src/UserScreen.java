@@ -13,15 +13,15 @@ public class UserScreen extends JFrame{
 	
 	private static JFrame thisWindow;
 	
-	private int numRestaurants;
-	private Restaurant[] restaurants;
+	//private int numRestaurants;
+	//private Restaurant[] restaurants;
 	
-	public UserScreen(String title)
+	public UserScreen(String title) throws IOException
 	{
 		super(title);
 		thisWindow = this;
-		numRestaurants = 0;
-		restaurants = new Restaurant[15];
+		//numRestaurants = 0;
+		//restaurants = new Restaurant[15];
 		
 		JButton searchBar = new JButton("Title Search");
 		searchBar.addActionListener(new ActionListener() {
@@ -49,10 +49,19 @@ public class UserScreen extends JFrame{
 				
 				if(newRestDesc == null) newRestDesc = "";
 				
-				if(newRestName != null || !newRestName.equals(""))
+				if(newRestName != null)
 				{
-					restaurants[numRestaurants] = new Restaurant(newRestName, newRestDesc);
-					numRestaurants++;
+					Restaurant restaurant = new Restaurant(newRestName, newRestDesc);
+					//restaurants[numRestaurants] = restaurant;
+					//numRestaurants++;
+					try
+					{
+						restaurant.addRestaurantToFile();
+					}
+					catch (IOException ex)
+					{
+						System.out.println("Failure");
+					}
 				}
 			}
 		});
@@ -74,12 +83,12 @@ public class UserScreen extends JFrame{
 		c.add(generalPanel);
 	}
 	
-	public Restaurant randomize()
+	/*public Restaurant randomize()
 	{
 		return restaurants[(int)Math.floor(Math.random() * numRestaurants)];
-	}
+	}*/
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{
 		UserScreen newScreen = new UserScreen("User Screen");
 		newScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

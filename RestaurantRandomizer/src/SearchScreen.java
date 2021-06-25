@@ -7,10 +7,26 @@ import java.awt.event.ActionListener;
 
 /**
  * @author Franceska
- *
+ * Search screen allows the user to look for titles or look for description key words
  */
 public class SearchScreen extends JFrame{
 
+	private static JFrame thisWindow;
+	
+	public SearchScreen(String title)
+	{
+		super(title);
+		thisWindow = this;
+		setUp();
+		
+		
+	}
+	
+	public void setUp()
+	{
+		
+	}
+	
 	/**
 	 * @param args
 	 */
